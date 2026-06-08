@@ -33,6 +33,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/calorie-track:latest &&
             docker stop calorie-track || true &&
             docker rm calorie-track || true &&
+            sleep 2 &&
             docker run -d \
               --name calorie-track \
               --restart always \
