@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from groq import Groq
 import os
-from datetime import datetime
+from datetime import datetime, date
 from dotenv import load_dotenv
 import json
-import requests 
+import requests
 from werkzeug.security import generate_password_hash, check_password_hash
 
 load_dotenv()
@@ -854,7 +854,7 @@ def get_water_today():
     if not user_id:
         return jsonify({'error': 'Unauthorized'}), 401
     today_str = date.today().isoformat()
-    records = query_supabase('water', 'GET', params={'user_id': f'eq.{user_id}', 'date': f'eq.{today_str}'}) or []
+    records = list(db['water'].find({'user_id': user_id, 'date': today_str}))
     total_ml = sum(r.get('ml', 0) for r in records)
     return jsonify({'success': True, 'total_ml': total_ml, 'entries': len(records)})
 
@@ -872,8 +872,8 @@ def add_water():
         'date': today_str,
         'timestamp': datetime.now().strftime('%H:%M:%S')
     }
-    query_supabase('water', 'POST', data=entry)
-    records = query_supabase('water', 'GET', params={'user_id': f'eq.{user_id}', 'date': f'eq.{today_str}'}) or []
+    db['water'].insert_one(entry)
+    records = list(db['water'].find({'user_id': user_id, 'date': today_str}))
     total_ml = sum(r.get('ml', 0) for r in records)
     return jsonify({'success': True, 'total_ml': total_ml})
 
@@ -883,7 +883,7 @@ def reset_water():
     if not user_id:
         return jsonify({'error': 'Unauthorized'}), 401
     today_str = date.today().isoformat()
-    query_supabase('water', 'DELETE', params={'user_id': f'eq.{user_id}', 'date': f'eq.{today_str}'})
+    db['water'].delete_many({'user_id': user_id, 'date': today_str})
     return jsonify({'success': True, 'total_ml': 0})
 
 @app.route('/api/water/history', methods=['GET'])
@@ -891,7 +891,7 @@ def get_water_history():
     user_id = session.get("user_id")
     if not user_id:
         return jsonify({'error': 'Unauthorized'}), 401
-    records = query_supabase('water', 'GET', params={'user_id': f'eq.{user_id}'}) or []
+    records = list(db['water'].find({'user_id': user_id}))
     daily = {}
     for r in records:
         d = r.get('date', '')
