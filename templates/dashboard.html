@@ -833,7 +833,9 @@
         .fat-goal-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--accent), var(--accent-light));
         }
@@ -860,15 +862,15 @@
             text-transform: uppercase;
             padding: 3px 8px;
             border-radius: 100px;
-            background: rgba(249,115,22,0.12);
+            background: rgba(249, 115, 22, 0.12);
             color: var(--accent);
-            border: 1px solid rgba(249,115,22,0.25);
+            border: 1px solid rgba(249, 115, 22, 0.25);
         }
 
         .fat-goal-badge.hit {
-            background: rgba(74,222,128,0.12);
+            background: rgba(74, 222, 128, 0.12);
             color: #4ade80;
-            border-color: rgba(74,222,128,0.3);
+            border-color: rgba(74, 222, 128, 0.3);
         }
 
         .fat-goal-metrics {
@@ -901,9 +903,17 @@
             color: #4ade80;
         }
 
-        .fat-goal-metric-val.deficit-color-fast { color: #f87171; }
-        .fat-goal-metric-val.deficit-color-med  { color: #facc15; }
-        .fat-goal-metric-val.deficit-color-low  { color: #4ade80; }
+        .fat-goal-metric-val.deficit-color-fast {
+            color: #f87171;
+        }
+
+        .fat-goal-metric-val.deficit-color-med {
+            color: #facc15;
+        }
+
+        .fat-goal-metric-val.deficit-color-low {
+            color: #4ade80;
+        }
 
         .fat-goal-metric-unit {
             font-size: 0.58rem;
@@ -920,7 +930,7 @@
         }
 
         .fat-goal-track {
-            background: rgba(255,255,255,0.06);
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 100px;
             height: 10px;
             overflow: hidden;
@@ -930,13 +940,21 @@
         .fat-goal-fill {
             height: 100%;
             border-radius: 100px;
-            transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+            transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             min-width: 0;
         }
 
-        .fat-goal-fill.fast { background: linear-gradient(90deg,#f87171,#ef4444); }
-        .fat-goal-fill.med  { background: linear-gradient(90deg,#facc15,#eab308); }
-        .fat-goal-fill.low  { background: linear-gradient(90deg,#4ade80,#22c55e); }
+        .fat-goal-fill.fast {
+            background: linear-gradient(90deg, #f87171, #ef4444);
+        }
+
+        .fat-goal-fill.med {
+            background: linear-gradient(90deg, #facc15, #eab308);
+        }
+
+        .fat-goal-fill.low {
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+        }
 
         .fat-goal-footer {
             display: flex;
@@ -968,29 +986,41 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 300;
             backdrop-filter: blur(4px);
         }
-        .more-drawer-overlay.open { display: block; }
+
+        .more-drawer-overlay.open {
+            display: block;
+        }
+
         .more-drawer {
             position: fixed;
-            bottom: 0; left: 0; right: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             z-index: 301;
             background: #111;
             border-top: 1px solid var(--border2);
             border-radius: 20px 20px 0 0;
             padding: 12px 16px max(24px, env(safe-area-inset-bottom));
             transform: translateY(100%);
-            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+            transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .more-drawer.open { transform: translateY(0); }
+
+        .more-drawer.open {
+            transform: translateY(0);
+        }
+
         .more-drawer-handle {
-            width: 36px; height: 4px;
+            width: 36px;
+            height: 4px;
             background: var(--border2);
             border-radius: 100px;
             margin: 0 auto 16px;
         }
+
         .more-drawer-title {
             font-size: 0.6rem;
             font-weight: 700;
@@ -1000,11 +1030,13 @@
             margin-bottom: 12px;
             text-align: center;
         }
+
         .more-drawer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
         }
+
         .more-drawer-item {
             display: flex;
             flex-direction: column;
@@ -1018,16 +1050,26 @@
             transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
-        .more-drawer-item:active { transform: scale(0.94); }
+
+        .more-drawer-item:active {
+            transform: scale(0.94);
+        }
+
         .more-drawer-item.active-tab {
             background: var(--accent-dim);
-            border-color: rgba(232,112,42,0.3);
+            border-color: rgba(232, 112, 42, 0.3);
         }
+
         .more-drawer-item svg {
-            width: 22px; height: 22px;
+            width: 22px;
+            height: 22px;
             stroke: var(--muted);
         }
-        .more-drawer-item.active-tab svg { stroke: var(--accent); }
+
+        .more-drawer-item.active-tab svg {
+            stroke: var(--accent);
+        }
+
         .more-drawer-item span {
             font-size: 0.55rem;
             font-weight: 700;
@@ -1035,15 +1077,19 @@
             text-transform: uppercase;
             color: var(--muted);
         }
-        .more-drawer-item.active-tab span { color: var(--accent); }
+
+        .more-drawer-item.active-tab span {
+            color: var(--accent);
+        }
 
         /* ── MACROS TAB ── */
         .macro-ring-row {
             display: grid;
-            grid-template-columns: repeat(3,1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-bottom: 20px;
         }
+
         .macro-ring-card {
             background: var(--surface2);
             border: 1px solid var(--border);
@@ -1051,12 +1097,14 @@
             padding: 16px 10px 14px;
             text-align: center;
         }
+
         .macro-ring-val {
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 2rem;
             font-weight: 900;
             line-height: 1;
         }
+
         .macro-ring-unit {
             font-size: 0.6rem;
             font-weight: 700;
@@ -1065,6 +1113,7 @@
             color: var(--muted);
             margin-top: 4px;
         }
+
         .macro-ring-label {
             font-size: 0.58rem;
             font-weight: 700;
@@ -1072,7 +1121,11 @@
             text-transform: uppercase;
             margin-top: 6px;
         }
-        .macro-bar-row { margin-bottom: 14px; }
+
+        .macro-bar-row {
+            margin-bottom: 14px;
+        }
+
         .macro-bar-label {
             display: flex;
             justify-content: space-between;
@@ -1083,40 +1136,80 @@
             color: var(--muted);
             margin-bottom: 5px;
         }
+
         .macro-bar-track {
             height: 8px;
-            background: rgba(255,255,255,0.06);
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 100px;
             overflow: hidden;
         }
+
         .macro-bar-fill {
             height: 100%;
             border-radius: 100px;
-            transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+            transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .macro-bar-fill.protein { background: linear-gradient(90deg,#60a5fa,#3b82f6); }
-        .macro-bar-fill.carbs   { background: linear-gradient(90deg,#facc15,#eab308); }
-        .macro-bar-fill.fat     { background: linear-gradient(90deg,#f87171,#ef4444); }
-        .macro-item-list { margin-top: 4px; }
+
+        .macro-bar-fill.protein {
+            background: linear-gradient(90deg, #60a5fa, #3b82f6);
+        }
+
+        .macro-bar-fill.carbs {
+            background: linear-gradient(90deg, #facc15, #eab308);
+        }
+
+        .macro-bar-fill.fat {
+            background: linear-gradient(90deg, #f87171, #ef4444);
+        }
+
+        .macro-item-list {
+            margin-top: 4px;
+        }
+
         .macro-item-row {
             display: grid;
-            grid-template-columns: 1fr repeat(4,52px);
+            grid-template-columns: 1fr repeat(4, 52px);
             gap: 4px;
             align-items: center;
             padding: 9px 0;
             border-bottom: 1px solid var(--border);
             font-size: 0.7rem;
         }
-        .macro-item-row:last-child { border-bottom: none; }
-        .macro-item-name { color: var(--text2); }
-        .macro-item-val { text-align: right; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 0.85rem; }
-        .macro-item-val.p { color: #60a5fa; }
-        .macro-item-val.c { color: #facc15; }
-        .macro-item-val.f { color: #f87171; }
-        .macro-item-val.cal { color: var(--accent); }
+
+        .macro-item-row:last-child {
+            border-bottom: none;
+        }
+
+        .macro-item-name {
+            color: var(--text2);
+        }
+
+        .macro-item-val {
+            text-align: right;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .macro-item-val.p {
+            color: #60a5fa;
+        }
+
+        .macro-item-val.c {
+            color: #facc15;
+        }
+
+        .macro-item-val.f {
+            color: #f87171;
+        }
+
+        .macro-item-val.cal {
+            color: var(--accent);
+        }
+
         .macro-table-head {
             display: grid;
-            grid-template-columns: 1fr repeat(4,52px);
+            grid-template-columns: 1fr repeat(4, 52px);
             gap: 4px;
             padding: 0 0 6px;
             font-size: 0.58rem;
@@ -1125,12 +1218,15 @@
             letter-spacing: 0.08em;
             color: var(--muted);
         }
-        .macro-table-head span { text-align: right; }
+
+        .macro-table-head span {
+            text-align: right;
+        }
 
         /* ── WATER TAB ── */
         .water-hero {
             background: linear-gradient(135deg, #0a1628, #0f2040);
-            border: 1px solid rgba(96,165,250,0.2);
+            border: 1px solid rgba(96, 165, 250, 0.2);
             border-radius: 18px;
             padding: 28px 20px 24px;
             text-align: center;
@@ -1138,13 +1234,16 @@
             position: relative;
             overflow: hidden;
         }
+
         .water-hero::before {
             content: '💧';
             position: absolute;
-            top: -10px; right: 10px;
+            top: -10px;
+            right: 10px;
             font-size: 5rem;
             opacity: 0.07;
         }
+
         .water-hero-val {
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 3.5rem;
@@ -1152,38 +1251,44 @@
             color: #60a5fa;
             line-height: 1;
         }
+
         .water-hero-unit {
             font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: rgba(96,165,250,0.7);
+            color: rgba(96, 165, 250, 0.7);
             margin-top: 4px;
         }
+
         .water-hero-sub {
             font-size: 0.72rem;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             margin-top: 8px;
         }
+
         .water-progress-track {
-            background: rgba(255,255,255,0.06);
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 100px;
             height: 10px;
             overflow: hidden;
             margin: 14px 0 6px;
         }
+
         .water-progress-fill {
             height: 100%;
             border-radius: 100px;
             background: linear-gradient(90deg, #3b82f6, #60a5fa);
-            transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .water-pct-row {
             display: flex;
             justify-content: space-between;
             font-size: 0.62rem;
-            color: rgba(96,165,250,0.5);
+            color: rgba(96, 165, 250, 0.5);
         }
+
         .water-glasses-row {
             display: flex;
             gap: 8px;
@@ -1191,11 +1296,13 @@
             margin: 16px 0;
             justify-content: center;
         }
+
         .water-glass {
-            width: 44px; height: 44px;
+            width: 44px;
+            height: 44px;
             border-radius: 10px;
-            border: 1.5px solid rgba(96,165,250,0.25);
-            background: rgba(96,165,250,0.05);
+            border: 1.5px solid rgba(96, 165, 250, 0.25);
+            background: rgba(96, 165, 250, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1203,19 +1310,22 @@
             transition: all 0.2s;
             cursor: default;
         }
+
         .water-glass.filled {
-            border-color: rgba(96,165,250,0.6);
-            background: rgba(96,165,250,0.15);
+            border-color: rgba(96, 165, 250, 0.6);
+            background: rgba(96, 165, 250, 0.15);
         }
+
         .water-quick-btns {
             display: grid;
-            grid-template-columns: repeat(4,1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 8px;
             margin-bottom: 16px;
         }
+
         .water-quick-btn {
             background: var(--surface2);
-            border: 1px solid rgba(96,165,250,0.2);
+            border: 1px solid rgba(96, 165, 250, 0.2);
             border-radius: 12px;
             padding: 12px 4px;
             text-align: center;
@@ -1223,14 +1333,23 @@
             transition: all 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
-        .water-quick-btn:active { transform: scale(0.93); }
-        .water-quick-btn:hover { border-color: rgba(96,165,250,0.5); background: rgba(96,165,250,0.08); }
+
+        .water-quick-btn:active {
+            transform: scale(0.93);
+        }
+
+        .water-quick-btn:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            background: rgba(96, 165, 250, 0.08);
+        }
+
         .water-quick-btn .wqb-ml {
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 1.1rem;
             font-weight: 800;
             color: #60a5fa;
         }
+
         .water-quick-btn .wqb-label {
             font-size: 0.55rem;
             font-weight: 700;
@@ -1239,23 +1358,28 @@
             color: var(--muted);
             margin-top: 2px;
         }
+
         .water-custom-row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
+
         .water-custom-input {
-            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
             background: var(--surface2);
             border: 1px solid var(--border2);
             border-radius: 10px;
-            padding: 12px 14px;
+            padding: 14px 16px;
             color: var(--text);
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
-        .water-custom-input:focus { outline: none; border-color: #3b82f6; }
+
+        .water-custom-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
         .water-goal-row {
             display: flex;
             align-items: center;
@@ -1266,8 +1390,21 @@
             border-radius: 12px;
             margin-bottom: 8px;
         }
-        .water-goal-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
-        .water-goal-val { font-family: 'Barlow Condensed',sans-serif; font-size: 1.1rem; font-weight: 800; color: #60a5fa; }
+
+        .water-goal-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+        }
+
+        .water-goal-val {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #60a5fa;
+        }
 
         /* ── IMAGE UPLOAD ── */
         .img-upload-area {
@@ -2709,7 +2846,8 @@
             </div>
             <!-- no plan state -->
             <div id="fg-no-plan" class="fat-goal-no-plan">
-                Go to <a onclick="switchTab('bodyfat-tab', document.querySelector('[onclick*=bodyfat]'))">Body Fat tab</a> to set your fat loss plan.
+                Go to <a onclick="switchTab('bodyfat-tab', document.querySelector('[onclick*=bodyfat]'))">Body Fat
+                    tab</a> to set your fat loss plan.
             </div>
             <!-- active plan state -->
             <div id="fg-active" style="display:none">
@@ -2831,13 +2969,20 @@
             <div class="chart-card">
                 <div class="chart-title">Calorie Deficit / Surplus</div>
                 <div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
-                    <span style="display:flex;align-items:center;gap:5px;font-size:0.68rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">
-                        <span style="width:10px;height:10px;border-radius:2px;background:#4ade80;display:inline-block;"></span>Deficit (good)
+                    <span
+                        style="display:flex;align-items:center;gap:5px;font-size:0.68rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">
+                        <span
+                            style="width:10px;height:10px;border-radius:2px;background:#4ade80;display:inline-block;"></span>Deficit
+                        (good)
                     </span>
-                    <span style="display:flex;align-items:center;gap:5px;font-size:0.68rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">
-                        <span style="width:10px;height:10px;border-radius:2px;background:#f87171;display:inline-block;"></span>Surplus (over goal)
+                    <span
+                        style="display:flex;align-items:center;gap:5px;font-size:0.68rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">
+                        <span
+                            style="width:10px;height:10px;border-radius:2px;background:#f87171;display:inline-block;"></span>Surplus
+                        (over goal)
                     </span>
-                    <span id="deficit-chart-plan-label" style="margin-left:auto;font-size:0.65rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;"></span>
+                    <span id="deficit-chart-plan-label"
+                        style="margin-left:auto;font-size:0.65rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;"></span>
                 </div>
                 <div class="chart-wrap">
                     <canvas id="deficitChart"></canvas>
@@ -3106,7 +3251,8 @@
                     <span>KCAL</span>
                 </div>
                 <div class="macro-item-list" id="macro-item-list">
-                    <div style="text-align:center;padding:20px 0;color:var(--muted);font-size:0.75rem;">No food logged today yet.</div>
+                    <div style="text-align:center;padding:20px 0;color:var(--muted);font-size:0.75rem;">No food logged
+                        today yet.</div>
                 </div>
             </div>
 
@@ -3137,17 +3283,14 @@
                     <div class="water-hero-sub" id="water-status-msg">Start drinking! 💧</div>
                 </div>
 
-                <!-- Glasses visual (8 glasses = 2000 ml, 250 ml each) -->
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
-                    <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Glasses (250 ml each)</div>
-                    <div class="water-glasses-row" id="water-glasses-row">
-                        <!-- filled by JS -->
-                    </div>
-                </div>
+
 
                 <!-- Quick add buttons -->
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
-                    <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Quick Add</div>
+                <div
+                    style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
+                    <div
+                        style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">
+                        Quick Add</div>
                     <div class="water-quick-btns">
                         <div class="water-quick-btn" onclick="addWater(150)">
                             <div class="wqb-ml">150</div>
@@ -3173,20 +3316,27 @@
 
                     <!-- Custom amount -->
                     <div class="water-custom-row">
-                        <input type="number" class="water-custom-input" id="water-custom-ml" placeholder="Custom ml (e.g. 330)" min="1" max="2000">
-                        <button class="btn" style="flex-shrink:0;padding:12px 18px;" onclick="addWaterCustom()">+ Add</button>
+                        <input type="number" class="water-custom-input" id="water-custom-ml"
+                            placeholder="Custom ml (e.g. 330)" min="1" max="2000">
                     </div>
+                    <button class="btn"
+                        style="width:100%;padding:13px;font-size:0.85rem;font-weight:700;letter-spacing:0.06em;margin-bottom:12px;"
+                        onclick="addWaterCustom()">+ ADD</button>
 
                     <div class="msg" id="msg-water"></div>
                 </div>
 
                 <!-- Daily goal setting -->
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
-                    <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Daily Goal</div>
+                <div
+                    style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;">
+                    <div
+                        style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">
+                        Daily Goal</div>
                     <div class="water-goal-row">
                         <span class="water-goal-label">Target</span>
                         <div style="display:flex;align-items:center;gap:10px;">
-                            <select id="water-goal-select" onchange="saveWaterGoal()" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:6px 10px;font-family:inherit;font-size:0.8rem;">
+                            <select id="water-goal-select" onchange="saveWaterGoal()"
+                                style="background:var(--surface2);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:6px 10px;font-family:inherit;font-size:0.8rem;">
                                 <option value="1500">1500 ml</option>
                                 <option value="2000">2000 ml</option>
                                 <option value="2500" selected>2500 ml</option>
@@ -3195,7 +3345,9 @@
                             </select>
                         </div>
                     </div>
-                    <button onclick="resetWater()" style="width:100%;background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:10px;padding:10px;font-family:inherit;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;margin-top:8px;">Reset Today</button>
+                    <button onclick="resetWater()"
+                        style="width:100%;background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:10px;padding:10px;font-family:inherit;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;margin-top:8px;">Reset
+                        Today</button>
                 </div>
 
             </div>
@@ -3298,16 +3450,25 @@
         <div id="rank-tab" class="tab-content">
 
             <!-- MY RANK HERO -->
-            <div class="section-card" id="my-rank-card" style="background:linear-gradient(135deg,#0e0e0e,#1a1a1a);border-color:rgba(240,192,96,0.2);">
+            <div class="section-card" id="my-rank-card"
+                style="background:linear-gradient(135deg,#0e0e0e,#1a1a1a);border-color:rgba(240,192,96,0.2);">
                 <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-                    <div id="rank-icon-circle" style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--surface2);border:2px solid var(--border);flex-shrink:0;">◈</div>
+                    <div id="rank-icon-circle"
+                        style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--surface2);border:2px solid var(--border);flex-shrink:0;">
+                        ◈</div>
                     <div>
-                        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;">YOUR RANK</div>
-                        <div id="my-rank-title" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;line-height:1;">—</div>
-                        <div id="my-rank-subtitle" style="font-size:0.78rem;color:var(--muted);margin-top:2px;">Loading...</div>
+                        <div
+                            style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;">
+                            YOUR RANK</div>
+                        <div id="my-rank-title"
+                            style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;line-height:1;">
+                            —</div>
+                        <div id="my-rank-subtitle" style="font-size:0.78rem;color:var(--muted);margin-top:2px;">
+                            Loading...</div>
                     </div>
                     <div style="margin-left:auto;text-align:right;flex-shrink:0;">
-                        <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:900;line-height:1;" id="my-score-big">—</div>
+                        <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:900;line-height:1;"
+                            id="my-score-big">—</div>
                         <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.12em;">/ 100</div>
                     </div>
                 </div>
@@ -3316,17 +3477,34 @@
                 <div class="score-bar-wrap" style="margin-bottom:8px;">
                     <div class="score-bar-fill" id="my-rank-bar" style="width:0%;transition:width 0.8s ease;"></div>
                 </div>
-                <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-bottom:16px;">
+                <div
+                    style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-bottom:16px;">
                     <span id="my-pts-label">—</span>
                     <span id="my-next-rank-label" style="text-align:right;">—</span>
                 </div>
 
                 <!-- Stats grid -->
                 <div class="rank-stats-grid" id="my-rank-stats">
-                    <div class="rank-stat-box"><div class="rank-stat-label">Days Logged</div><div class="rank-stat-value" id="rs2-days-logged">-</div><div class="rank-stat-sub">food entries</div></div>
-                    <div class="rank-stat-box"><div class="rank-stat-label">Days Trained</div><div class="rank-stat-value" id="rs2-days-trained">-</div><div class="rank-stat-sub">workouts</div></div>
-                    <div class="rank-stat-box"><div class="rank-stat-label">Avg Intake</div><div class="rank-stat-value" id="rs2-avg-consumed">-</div><div class="rank-stat-sub">kcal / day</div></div>
-                    <div class="rank-stat-box"><div class="rank-stat-label">Avg Burn</div><div class="rank-stat-value" id="rs2-avg-burned">-</div><div class="rank-stat-sub">kcal / day</div></div>
+                    <div class="rank-stat-box">
+                        <div class="rank-stat-label">Days Logged</div>
+                        <div class="rank-stat-value" id="rs2-days-logged">-</div>
+                        <div class="rank-stat-sub">food entries</div>
+                    </div>
+                    <div class="rank-stat-box">
+                        <div class="rank-stat-label">Days Trained</div>
+                        <div class="rank-stat-value" id="rs2-days-trained">-</div>
+                        <div class="rank-stat-sub">workouts</div>
+                    </div>
+                    <div class="rank-stat-box">
+                        <div class="rank-stat-label">Avg Intake</div>
+                        <div class="rank-stat-value" id="rs2-avg-consumed">-</div>
+                        <div class="rank-stat-sub">kcal / day</div>
+                    </div>
+                    <div class="rank-stat-box">
+                        <div class="rank-stat-label">Avg Burn</div>
+                        <div class="rank-stat-value" id="rs2-avg-burned">-</div>
+                        <div class="rank-stat-sub">kcal / day</div>
+                    </div>
                 </div>
             </div>
 
@@ -3341,7 +3519,9 @@
                 <div class="section-title">AI Performance Debrief</div>
                 <div class="section-sub">Your coach analyzes your logs and delivers a direct assessment.</div>
                 <div class="msg" id="msg-debrief2"></div>
-                <div class="loading" id="load-debrief2" style="display:none;"><div class="spinner"></div> Generating debrief...</div>
+                <div class="loading" id="load-debrief2" style="display:none;">
+                    <div class="spinner"></div> Generating debrief...
+                </div>
                 <button class="btn" onclick="getDebrief2()">Get Performance Debrief</button>
                 <div class="debrief-card" id="debrief-card2" style="display:none;margin-top:16px;">
                     <div class="debrief-header">Performance Debrief</div>
@@ -3350,15 +3530,23 @@
             </div>
 
             <!-- LEADERBOARD -->
-            <div class="section-card" style="background:linear-gradient(135deg,#0a0e1a,#111);border-color:rgba(99,179,237,0.2);">
+            <div class="section-card"
+                style="background:linear-gradient(135deg,#0a0e1a,#111);border-color:rgba(99,179,237,0.2);">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
                     <div>
-                        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;">🏆 Leaderboard</div>
-                        <div style="font-size:0.72rem;color:var(--muted);margin-top:2px;">All users ranked by Operator Score</div>
+                        <div
+                            style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;">
+                            🏆 Leaderboard</div>
+                        <div style="font-size:0.72rem;color:var(--muted);margin-top:2px;">All users ranked by Operator
+                            Score</div>
                     </div>
-                    <button onclick="loadLeaderboard()" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:0.72rem;padding:6px 12px;border-radius:8px;cursor:pointer;">↻ Refresh</button>
+                    <button onclick="loadLeaderboard()"
+                        style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:0.72rem;padding:6px 12px;border-radius:8px;cursor:pointer;">↻
+                        Refresh</button>
                 </div>
-                <div class="loading" id="load-leaderboard"><div class="spinner"></div> Loading...</div>
+                <div class="loading" id="load-leaderboard">
+                    <div class="spinner"></div> Loading...
+                </div>
                 <div id="leaderboard-list"></div>
             </div>
 
@@ -3373,35 +3561,65 @@
         <div class="more-drawer-title">All Tabs</div>
         <div class="more-drawer-grid">
             <div class="more-drawer-item" id="md-log" onclick="drawerNav('log-tab','bnav-log','md-log')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20h9" />
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                </svg>
                 <span>Log</span>
             </div>
-            <div class="more-drawer-item" id="md-viz" onclick="drawerNav('viz-tab','bnav-viz','md-viz',()=>{caloriesChart.resize();mealChart.resize();deficitChart.resize();})">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div class="more-drawer-item" id="md-viz"
+                onclick="drawerNav('viz-tab','bnav-viz','md-viz',()=>{caloriesChart.resize();mealChart.resize();deficitChart.resize();})">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
                 <span>Charts</span>
             </div>
-            <div class="more-drawer-item" id="md-history" onclick="drawerNav('history-tab','bnav-history','md-history')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="more-drawer-item" id="md-history"
+                onclick="drawerNav('history-tab','bnav-history','md-history')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                </svg>
                 <span>History</span>
             </div>
-            <div class="more-drawer-item" id="md-bodyfat" onclick="drawerNav('bodyfat-tab','bnav-bodyfat','md-bodyfat',loadBfPersistent)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <div class="more-drawer-item" id="md-bodyfat"
+                onclick="drawerNav('bodyfat-tab','bnav-bodyfat','md-bodyfat',loadBfPersistent)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
                 <span>Body Fat</span>
             </div>
-            <div class="more-drawer-item" id="md-rank" onclick="drawerNav('rank-tab','bnav-rank','md-rank',loadRankStatus)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l4-4 4 4"/><path d="M12 2v10"/><polyline points="20 12 12 20 4 12"/></svg>
+            <div class="more-drawer-item" id="md-rank"
+                onclick="drawerNav('rank-tab','bnav-rank','md-rank',loadRankStatus)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 6l4-4 4 4" />
+                    <path d="M12 2v10" />
+                    <polyline points="20 12 12 20 4 12" />
+                </svg>
                 <span>Rank</span>
             </div>
-            <div class="more-drawer-item" id="md-macros" onclick="drawerNav('macros-tab','bnav-more','md-macros',loadMacros)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <div class="more-drawer-item" id="md-macros"
+                onclick="drawerNav('macros-tab','bnav-more','md-macros',loadMacros)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4l3 3" />
+                </svg>
                 <span>Macros</span>
             </div>
-            <div class="more-drawer-item" id="md-water" onclick="drawerNav('water-tab','bnav-more','md-water',loadWater)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 9 2 14a10 10 0 0 0 20 0c0-5-4.48-12-10-12z"/></svg>
+            <div class="more-drawer-item" id="md-water"
+                onclick="drawerNav('water-tab','bnav-more','md-water',loadWater)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2C6.48 2 2 9 2 14a10 10 0 0 0 20 0c0-5-4.48-12-10-12z" />
+                </svg>
                 <span>Water</span>
             </div>
-            <div class="more-drawer-item" id="md-profile" onclick="drawerNav('profile-tab','bnav-profile','md-profile')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <div class="more-drawer-item" id="md-profile"
+                onclick="drawerNav('profile-tab','bnav-profile','md-profile')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
                 <span>Profile</span>
             </div>
         </div>
@@ -3441,7 +3659,9 @@
         <button class="bnav-btn" id="bnav-rank"
             onclick="switchTab('rank-tab',this);setBNav('bnav-rank');loadRankStatus()">
             <svg class="bnav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M8 6l4-4 4 4"/><path d="M12 2v10"/><polyline points="20 12 12 20 4 12"/>
+                <path d="M8 6l4-4 4 4" />
+                <path d="M12 2v10" />
+                <polyline points="20 12 12 20 4 12" />
             </svg>
             <span>Rank</span>
         </button>
@@ -3454,9 +3674,9 @@
         </button>
         <button class="bnav-btn" id="bnav-more" onclick="openMoreDrawer()">
             <svg class="bnav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/>
-                <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
-                <circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+                <circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none" />
+                <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+                <circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none" />
             </svg>
             <span>More</span>
         </button>
@@ -3537,14 +3757,14 @@
         // ── DAILY FAT LOSS GOAL CARD ──────────────────────────────────────
         function updateFatGoalCard() {
             const hasPlan = !!localStorage.getItem(BF_KEY);
-            const noPlanEl  = document.getElementById('fg-no-plan');
-            const activeEl  = document.getElementById('fg-active');
-            const badge     = document.getElementById('fg-badge');
+            const noPlanEl = document.getElementById('fg-no-plan');
+            const activeEl = document.getElementById('fg-active');
+            const badge = document.getElementById('fg-badge');
 
             if (!hasPlan) {
-                if (noPlanEl)  noPlanEl.style.display  = '';
-                if (activeEl)  activeEl.style.display   = 'none';
-                if (badge)     badge.textContent         = 'No Plan Set';
+                if (noPlanEl) noPlanEl.style.display = '';
+                if (activeEl) activeEl.style.display = 'none';
+                if (badge) badge.textContent = 'No Plan Set';
                 return;
             }
 
@@ -3552,34 +3772,34 @@
             if (activeEl) activeEl.style.display = '';
 
             const todayConsumed = parseInt('{{ today_consumed or 0 }}') || 0;
-            const todayBurned   = parseInt('{{ today_burned or 0 }}') || 0;
+            const todayBurned = parseInt('{{ today_burned or 0 }}') || 0;
 
             // deficit = only what you've actively logged: burned activity minus food consumed
             // BMR is NOT included — passive metabolism is not a "goal achieved" signal
             const todayDeficit = Math.max(0, todayBurned - todayConsumed);
-            const target       = DEFICIT_MAP[activeBurnMode];
-            const pct          = Math.min(100, Math.round(todayDeficit / target * 100));
-            const remaining    = Math.max(0, target - todayDeficit);
+            const target = DEFICIT_MAP[activeBurnMode];
+            const pct = Math.min(100, Math.round(todayDeficit / target * 100));
+            const remaining = Math.max(0, target - todayDeficit);
             // fat lost in grams: 1 kcal ≈ 1/7700 kg = 1000/7700 g
-            const fatLostG     = Math.round(todayDeficit * 1000 / 7700);
-            const fatGoalG     = Math.round(target * 1000 / 7700);
-            const goalHit      = todayDeficit >= target;
+            const fatLostG = Math.round(todayDeficit * 1000 / 7700);
+            const fatGoalG = Math.round(target * 1000 / 7700);
+            const goalHit = todayDeficit >= target;
 
             const PLAN_LABELS = { fast: 'Fast 🔥', med: 'Medium ⚡', low: 'Slow 🌱' };
 
             // badge
             if (badge) {
                 badge.textContent = goalHit ? '🎯 Goal Hit!' : PLAN_LABELS[activeBurnMode];
-                badge.className   = 'fat-goal-badge' + (goalHit ? ' hit' : '');
+                badge.className = 'fat-goal-badge' + (goalHit ? ' hit' : '');
             }
 
             const defValEl = document.getElementById('fg-deficit-val');
             const goalValEl = document.getElementById('fg-goal-val');
-            const fatValEl  = document.getElementById('fg-fat-val');
-            const barEl     = document.getElementById('fg-bar');
-            const leftEl    = document.getElementById('fg-left-msg');
-            const pctEl     = document.getElementById('fg-pct-label');
-            const labelEl   = document.getElementById('fg-plan-label');
+            const fatValEl = document.getElementById('fg-fat-val');
+            const barEl = document.getElementById('fg-bar');
+            const leftEl = document.getElementById('fg-left-msg');
+            const pctEl = document.getElementById('fg-pct-label');
+            const labelEl = document.getElementById('fg-plan-label');
 
             if (defValEl) {
                 defValEl.textContent = todayDeficit;
@@ -3591,15 +3811,15 @@
                 fatValEl.className = 'fat-goal-metric-val' + (goalHit ? ' achieved' : '');
             }
             if (barEl) {
-                barEl.style.width  = pct + '%';
-                barEl.className    = 'fat-goal-fill ' + activeBurnMode;
+                barEl.style.width = pct + '%';
+                barEl.className = 'fat-goal-fill ' + activeBurnMode;
             }
             if (leftEl) {
                 leftEl.innerHTML = goalHit
                     ? '<span class="fg-hit">🎯 Daily deficit goal hit!</span>'
                     : remaining + ' kcal still needed';
             }
-            if (pctEl)   pctEl.textContent = pct + '%';
+            if (pctEl) pctEl.textContent = pct + '%';
             if (labelEl) labelEl.textContent = PLAN_LABELS[activeBurnMode];
         }
         // ──────────────────────────────────────────────────────────────────
@@ -3941,7 +4161,7 @@
                         label: 'Deficit / Surplus',
                         data: sortedDates.length ? deficitDs : [0],
                         backgroundColor: (sortedDates.length ? deficitDs : [0]).map(v => v >= 0 ? 'rgba(74,222,128,0.75)' : 'rgba(248,113,113,0.75)'),
-                        borderColor:     (sortedDates.length ? deficitDs : [0]).map(v => v >= 0 ? '#4ade80' : '#f87171'),
+                        borderColor: (sortedDates.length ? deficitDs : [0]).map(v => v >= 0 ? '#4ade80' : '#f87171'),
                         borderWidth: 1,
                         borderRadius: 5,
                     },
@@ -4030,8 +4250,8 @@
             const d = item.date || todayStr2;
             if (!dailyMacros[d]) dailyMacros[d] = { protein: 0, carbs: 0, fat: 0 };
             dailyMacros[d].protein += parseInt(item.protein || 0);
-            dailyMacros[d].carbs   += parseInt(item.carbs || 0);
-            dailyMacros[d].fat     += parseInt(item.fat || 0);
+            dailyMacros[d].carbs += parseInt(item.carbs || 0);
+            dailyMacros[d].fat += parseInt(item.fat || 0);
         });
 
         const MACRO_TARGETS = { protein: 150, carbs: 250, fat: 65 };
@@ -4040,17 +4260,17 @@
             const todayItems = consumedItemsAll.filter(i => (i.date || todayStr2) === todayStr2);
             const totals = { protein: 0, carbs: 0, fat: 0, calories: 0 };
             todayItems.forEach(i => {
-                totals.protein  += parseInt(i.protein || 0);
-                totals.carbs    += parseInt(i.carbs || 0);
-                totals.fat      += parseInt(i.fat || 0);
+                totals.protein += parseInt(i.protein || 0);
+                totals.carbs += parseInt(i.carbs || 0);
+                totals.fat += parseInt(i.fat || 0);
                 totals.calories += parseInt(i.calories || 0);
             });
 
             document.getElementById('m-protein-val').textContent = totals.protein;
-            document.getElementById('m-carbs-val').textContent   = totals.carbs;
-            document.getElementById('m-fat-val').textContent     = totals.fat;
+            document.getElementById('m-carbs-val').textContent = totals.carbs;
+            document.getElementById('m-fat-val').textContent = totals.fat;
 
-            ['protein','carbs','fat'].forEach(m => {
+            ['protein', 'carbs', 'fat'].forEach(m => {
                 const pct = Math.min(100, Math.round(totals[m] / MACRO_TARGETS[m] * 100));
                 document.getElementById(`m-${m}-bar`).style.width = pct + '%';
                 document.getElementById(`m-${m}-pct`).textContent = `${totals[m]} / ${MACRO_TARGETS[m]}g`;
@@ -4082,8 +4302,8 @@
                         labels: macroSortedDates.length ? macroSortedDates : [todayStr2],
                         datasets: [
                             { label: 'Protein (g)', data: macroSortedDates.map(d => dailyMacros[d].protein), backgroundColor: 'rgba(96,165,250,0.7)', borderRadius: 4, borderWidth: 0 },
-                            { label: 'Carbs (g)',   data: macroSortedDates.map(d => dailyMacros[d].carbs),   backgroundColor: 'rgba(250,204,21,0.7)',  borderRadius: 4, borderWidth: 0 },
-                            { label: 'Fat (g)',     data: macroSortedDates.map(d => dailyMacros[d].fat),     backgroundColor: 'rgba(248,113,113,0.7)', borderRadius: 4, borderWidth: 0 },
+                            { label: 'Carbs (g)', data: macroSortedDates.map(d => dailyMacros[d].carbs), backgroundColor: 'rgba(250,204,21,0.7)', borderRadius: 4, borderWidth: 0 },
+                            { label: 'Fat (g)', data: macroSortedDates.map(d => dailyMacros[d].fat), backgroundColor: 'rgba(248,113,113,0.7)', borderRadius: 4, borderWidth: 0 },
                         ]
                     },
                     options: {
@@ -4133,7 +4353,7 @@
 
             // glasses (8 slots)
             const glassesRow = document.getElementById('water-glasses-row');
-            glassesRow.innerHTML = Array.from({length: 8}, (_, i) =>
+            glassesRow.innerHTML = Array.from({ length: 8 }, (_, i) =>
                 `<div class="water-glass ${i < glasses ? 'filled' : ''}">💧</div>`
             ).join('');
         }
@@ -4143,7 +4363,7 @@
                 const res = await fetch('/api/water/today');
                 const data = await res.json();
                 if (data.success) renderWater(data.total_ml);
-            } catch(e) { renderWater(0); }
+            } catch (e) { renderWater(0); }
         }
 
         async function addWater(ml) {
@@ -4152,8 +4372,8 @@
             try {
                 const res = await fetch('/api/water/add', {
                     method: 'POST',
-                    headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify({ml})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ml })
                 });
                 const data = await res.json();
                 if (data.success) {
@@ -4162,7 +4382,7 @@
                     msgEl.style.color = '#4ade80';
                     setTimeout(() => msgEl.textContent = '', 2000);
                 }
-            } catch(e) {}
+            } catch (e) { }
         }
 
         async function addWaterCustom() {
@@ -4174,7 +4394,7 @@
 
         async function resetWater() {
             if (!confirm('Reset today\'s water intake?')) return;
-            const res = await fetch('/api/water/reset', {method:'POST'});
+            const res = await fetch('/api/water/reset', { method: 'POST' });
             const data = await res.json();
             if (data.success) renderWater(0);
         }
@@ -4241,7 +4461,7 @@
 
                 rankLoaded = true;
                 loadLeaderboard();
-            } catch(e) {
+            } catch (e) {
                 console.error('loadRankStatus error:', e);
             }
         }
@@ -4253,7 +4473,7 @@
             document.getElementById('debrief-card2').style.display = 'none';
             document.getElementById('msg-debrief2').textContent = '';
             try {
-                const res = await fetch('/api/operator-debrief', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'});
+                const res = await fetch('/api/operator-debrief', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
                 const data = await res.json();
                 document.getElementById('load-debrief2').style.display = 'none';
                 if (data.success) {
@@ -4262,7 +4482,7 @@
                 } else {
                     document.getElementById('msg-debrief2').textContent = data.error || 'Failed.';
                 }
-            } catch(e) {
+            } catch (e) {
                 document.getElementById('load-debrief2').style.display = 'none';
                 document.getElementById('msg-debrief2').textContent = 'Error: ' + e.message;
             }
@@ -4281,7 +4501,7 @@
                 loadEl.style.display = 'none';
                 if (!data.success) { listEl.innerHTML = '<div style="color:var(--muted);font-size:0.82rem;padding:8px 0;">Failed to load.</div>'; return; }
 
-                const medal = ['🥇','🥈','🥉'];
+                const medal = ['🥇', '🥈', '🥉'];
                 data.entries.forEach(e => {
                     const isMe = e.is_me;
                     const row = document.createElement('div');
@@ -4293,12 +4513,12 @@
                         border:1px solid ${isMe ? 'rgba(240,192,96,0.3)' : 'var(--border)'};
                         transition:background 0.15s;
                     `;
-                    const pos = e.position <= 3 ? medal[e.position-1] : `#${e.position}`;
+                    const pos = e.position <= 3 ? medal[e.position - 1] : `#${e.position}`;
                     row.innerHTML = `
-                        <div style="font-size:${e.position<=3?'1.3rem':'0.9rem'};font-weight:900;min-width:32px;text-align:center;font-family:'Barlow Condensed',sans-serif;color:${e.position<=3?'inherit':'var(--muted)'};">${pos}</div>
+                        <div style="font-size:${e.position <= 3 ? '1.3rem' : '0.9rem'};font-weight:900;min-width:32px;text-align:center;font-family:'Barlow Condensed',sans-serif;color:${e.position <= 3 ? 'inherit' : 'var(--muted)'};">${pos}</div>
                         <div style="flex:1;min-width:0;">
-                            <div style="font-weight:700;font-size:0.9rem;color:${isMe?'#f0c060':'var(--text)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                                ${e.name}${isMe?' <span style="font-size:0.65rem;background:rgba(240,192,96,0.15);color:#f0c060;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:0.08em;">YOU</span>':''}
+                            <div style="font-weight:700;font-size:0.9rem;color:${isMe ? '#f0c060' : 'var(--text)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                ${e.name}${isMe ? ' <span style="font-size:0.65rem;background:rgba(240,192,96,0.15);color:#f0c060;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:0.08em;">YOU</span>' : ''}
                             </div>
                             <div style="font-size:0.7rem;color:var(--muted);margin-top:1px;">${e.rank.title} · ${e.days_logged}d logged · ${e.days_trained}d trained</div>
                         </div>
@@ -4313,7 +4533,7 @@
                 if (data.entries.length === 0) {
                     listEl.innerHTML = '<div style="color:var(--muted);font-size:0.82rem;padding:8px 0;">No users yet.</div>';
                 }
-            } catch(e) {
+            } catch (e) {
                 loadEl.style.display = 'none';
                 listEl.innerHTML = '<div style="color:var(--red);font-size:0.82rem;">Error loading leaderboard.</div>';
             }
@@ -4322,13 +4542,13 @@
         // Load rank on tab switch
         const origSwitchTab = window.switchTab;
         const _origSwitchTabInternal = switchTab;
-        const __patchedSwitchTab = function(tabId, btn) {
+        const __patchedSwitchTab = function (tabId, btn) {
             _origSwitchTabInternal(tabId, btn);
             if (tabId === 'rank-tab') { loadRankStatus(); }
         };
         // Override switchTab for rank tab auto-load
 
-        </script>
+    </script>
 </body>
 
 </html>
