@@ -19,16 +19,18 @@ jobs:
         run: docker build -t "${{ secrets.DOCKER_USERNAME }}/calorie-track:latest" .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/calorie-track:latest
+        run: docker push "${{ secrets.DOCKER_USERNAME }}/calorie-track:latest"
 
       - name: SSH and redeploy on EC2
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          envs: DOCKER_USERNAME,DOCKER_PASSWORD
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/calorie-track:latest
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker pull "$DOCKER_USERNAME/calorie-track:latest"
             docker stop calorie-track || true
             docker rm calorie-track || true
             docker run -d \
@@ -36,4 +38,7 @@ jobs:
               --restart always \
               -p 80:5000 \
               --env-file ~/calorie-track.env \
-              ${{ secrets.DOCKER_USERNAME }}/calorie-track:latest
+              "$DOCKER_USERNAME/calorie-track:latest"
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
