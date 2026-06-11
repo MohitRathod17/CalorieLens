@@ -535,7 +535,7 @@ def analyze_body_fat():
             "HTTP-Referer": "http://localhost:5000",
             "X-Title": "Calorie Tracker"
         }
-        
+         
         system_prompt = (
             "You are an expert fitness evaluator and sports scientist. Analyze the uploaded physique photo "
             "and estimate the person's body fat percentage as accurately and objectively as possible. "
