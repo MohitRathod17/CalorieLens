@@ -308,21 +308,28 @@ def index():
     h      = user.get('height') or 170.0
     bmr    = round(10 * w + 6.25 * h - 5 * age + 5)  # male formula
     
+    # Sort all items by date descending for history tab
+    all_items_sorted = sorted(logs, key=lambda x: (x.get('date', ''), x.get('timestamp', '')), reverse=True)
+
     return render_template(
         'dashboard.html',
         user=user,
         bmi=bmi,
         bmi_status=bmi_status,
-        total_consumed=total_consumed,
-        total_burned=total_burned,
-        net_calories=net_calories,
+        # Dashboard cards now show TODAY only
+        total_consumed=today_consumed,
+        total_burned=today_burned,
+        net_calories=today_consumed - today_burned,
+        # Keep all items available for history/charts
         consumed_items=consumed_items,
         burned_items=burned_items,
+        all_items_sorted=all_items_sorted,
         today_consumed=today_consumed,
         today_burned=today_burned,
         today_protein=today_protein,
         today_carbs=today_carbs,
         today_fat=today_fat,
+        today_str=today_str,
         bmr=bmr
     )
 
@@ -463,6 +470,7 @@ def delete_log(log_id):
 
 @app.route('/api/clear', methods=['POST'])
 def clear_data():
+    """Clear ALL logs for user."""
     user_id = session.get("user_id")
     if not user_id:
         return jsonify({'error': 'Unauthorized'}), 401
@@ -471,6 +479,16 @@ def clear_data():
     if res is not None:
         return jsonify({'success': True})
     return jsonify({'error': 'Failed to clear log data.'}), 500
+
+@app.route('/api/clear-today', methods=['POST'])
+def clear_today():
+    """Clear only today's logs for user."""
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({'error': 'Unauthorized'}), 401
+    today_str = date.today().isoformat()
+    db['logs'].delete_many({'user_id': user_id, 'date': today_str})
+    return jsonify({'success': True})
 
 # ================= VLM BODY FAT TIMELINE =================
 

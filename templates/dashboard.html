@@ -2822,17 +2822,17 @@
         <!-- STATS ROW -->
         <div class="stats-row">
             <div class="stat-card consumed">
-                <div class="stat-label">Consumed</div>
+                <div class="stat-label">Consumed<br><span style="font-size:0.6rem;letter-spacing:0.08em;color:var(--muted);">TODAY</span></div>
                 <div class="stat-value" id="total-consumed">{{ total_consumed }}</div>
                 <div class="stat-unit">kcal</div>
             </div>
             <div class="stat-card burned">
-                <div class="stat-label">Burned</div>
+                <div class="stat-label">Burned<br><span style="font-size:0.6rem;letter-spacing:0.08em;color:var(--muted);">TODAY</span></div>
                 <div class="stat-value" id="total-burned">{{ total_burned }}</div>
                 <div class="stat-unit">kcal</div>
             </div>
             <div class="stat-card net">
-                <div class="stat-label">Net</div>
+                <div class="stat-label">Net<br><span style="font-size:0.6rem;letter-spacing:0.08em;color:var(--muted);">TODAY</span></div>
                 <div class="stat-value" id="net-calories">{{ net_calories }}</div>
                 <div class="stat-unit">kcal</div>
             </div>
@@ -3390,57 +3390,12 @@
 
         <!-- TAB: HISTORY -->
         <div id="history-tab" class="tab-content">
-            <div class="section-card">
-                <div class="log-section-title">Consumed</div>
-                <div class="log-list" id="consumed-items">
-                    {% if consumed_items %}
-                    {% for item in consumed_items %}
-                    <div class="log-item" id="log-item-{{ item.id }}">
-                        <div class="log-info">
-                            <div class="log-name">{{ item.name }}</div>
-                            <div class="log-meta">
-                                <span class="log-badge">{{ item.meal_type or 'Breakfast' }}</span>
-                                <span>{{ item.date }}</span>
-                                <span>{{ item.timestamp }}</span>
-                            </div>
-                        </div>
-                        <div class="log-right">
-                            <div class="log-cals">+{{ item.calories }}</div>
-                            <button class="log-delete" onclick="deleteLogItem({{ item.id }})">x</button>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="log-empty">No food logged yet.</div>
-                    {% endif %}
-                </div>
-
-                <div class="log-section-title">Activity</div>
-                <div class="log-list" id="burned-items">
-                    {% if burned_items %}
-                    {% for item in burned_items %}
-                    <div class="log-item" id="log-item-{{ item.id }}">
-                        <div class="log-info">
-                            <div class="log-name">{{ item.name }}</div>
-                            <div class="log-meta">
-                                <span>{{ item.date }}</span>
-                                <span>{{ item.timestamp }}</span>
-                            </div>
-                        </div>
-                        <div class="log-right">
-                            <div class="log-cals burned">-{{ item.calories }}</div>
-                            <button class="log-delete" onclick="deleteLogItem({{ item.id }})">x</button>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="log-empty">No activity logged yet.</div>
-                    {% endif %}
-                </div>
-
-                <!-- DANGER ZONE -->
-                <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
-                    <button class="btn btn-ghost" onclick="clearAll()">Clear All Data</button>
+            <div id="history-grouped-list"></div>
+            <!-- DANGER ZONE -->
+            <div class="section-card" style="margin-top:12px;">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button class="btn btn-ghost" onclick="clearToday()" style="flex:1;">Clear Today</button>
+                    <button class="btn btn-ghost" onclick="clearAll()" style="flex:1;color:#c0392b;border-color:#c0392b;">Clear All Data</button>
                 </div>
             </div>
         </div>
@@ -4062,10 +4017,108 @@
             }
         }
 
+        async function clearToday() {
+            if (!confirm('Clear all logs for today?')) return;
+            const res = await fetch('/api/clear-today', { method: 'POST' });
+            if (res.ok) location.reload();
+        }
+
         async function clearAll() {
-            if (!confirm('Clear all logged data?')) return;
+            if (!confirm('Clear ALL historical data permanently?')) return;
             const res = await fetch('/api/clear', { method: 'POST' });
             if (res.ok) location.reload();
+        }
+
+        // ── HISTORY: Date-grouped renderer ───────────────────────────
+        function renderHistory() {
+            const allConsumed = {{ consumed_items | tojson }};
+            const allBurned   = {{ burned_items | tojson }};
+            const todayStr    = new Date().toISOString().split('T')[0];
+
+            // Group by date
+            const byDate = {};
+            allConsumed.forEach(item => {
+                const d = item.date || todayStr;
+                if (!byDate[d]) byDate[d] = { consumed: [], burned: [] };
+                byDate[d].consumed.push(item);
+            });
+            allBurned.forEach(item => {
+                const d = item.date || todayStr;
+                if (!byDate[d]) byDate[d] = { consumed: [], burned: [] };
+                byDate[d].burned.push(item);
+            });
+
+            const dates = Object.keys(byDate).sort().reverse(); // newest first
+            const container = document.getElementById('history-grouped-list');
+            if (!container) return;
+
+            if (!dates.length) {
+                container.innerHTML = '<div class="section-card" style="text-align:center;color:var(--muted);font-size:0.8rem;padding:24px;">No history yet.</div>';
+                return;
+            }
+
+            container.innerHTML = dates.map(d => {
+                const { consumed, burned } = byDate[d];
+                const totalC = consumed.reduce((s, i) => s + i.calories, 0);
+                const totalB = burned.reduce((s, i) => s + i.calories, 0);
+                const net    = totalC - totalB;
+                const isToday = d === todayStr;
+                const label  = isToday ? `${d} — Today` : d;
+
+                const consumedHTML = consumed.length ? consumed.map(item => `
+                    <div class="log-item" id="log-item-${item.id}">
+                        <div class="log-info">
+                            <div class="log-name">${item.name}</div>
+                            <div class="log-meta">
+                                <span class="log-badge">${item.meal_type || 'Breakfast'}</span>
+                                <span>${item.timestamp || ''}</span>
+                            </div>
+                        </div>
+                        <div class="log-right">
+                            <div class="log-cals">+${item.calories}</div>
+                            <button class="log-delete" onclick="deleteLogItem(${item.id})">x</button>
+                        </div>
+                    </div>`).join('') : '<div class="log-empty" style="font-size:0.75rem;">No food logged.</div>';
+
+                const burnedHTML = burned.length ? burned.map(item => `
+                    <div class="log-item" id="log-item-${item.id}">
+                        <div class="log-info">
+                            <div class="log-name">${item.name}</div>
+                            <div class="log-meta"><span>${item.timestamp || ''}</span></div>
+                        </div>
+                        <div class="log-right">
+                            <div class="log-cals burned">-${item.calories}</div>
+                            <button class="log-delete" onclick="deleteLogItem(${item.id})">x</button>
+                        </div>
+                    </div>`).join('') : '<div class="log-empty" style="font-size:0.75rem;">No activity logged.</div>';
+
+                return `
+                <div class="section-card history-day-card" style="margin-bottom:12px;">
+                    <div class="history-day-header" onclick="toggleDayCard(this)" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                        <div>
+                            <span style="font-size:0.85rem;font-weight:700;color:var(--text);letter-spacing:0.05em;">${label}</span>
+                            <span style="margin-left:10px;font-size:0.72rem;color:var(--muted);">
+                                C: ${totalC} | B: ${totalB} | Net: <span style="color:${net > 0 ? '#e8702a' : '#5cbf7a'}">${net}</span>
+                            </span>
+                        </div>
+                        <span class="day-toggle-arrow" style="color:var(--muted);font-size:0.75rem;">▼</span>
+                    </div>
+                    <div class="history-day-body" ${isToday ? '' : 'style="display:none;"'}>
+                        <div class="log-section-title" style="font-size:0.7rem;margin-bottom:6px;">CONSUMED</div>
+                        <div class="log-list">${consumedHTML}</div>
+                        <div class="log-section-title" style="font-size:0.7rem;margin-top:12px;margin-bottom:6px;">ACTIVITY</div>
+                        <div class="log-list">${burnedHTML}</div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function toggleDayCard(header) {
+            const body = header.nextElementSibling;
+            const arrow = header.querySelector('.day-toggle-arrow');
+            const isHidden = body.style.display === 'none';
+            body.style.display = isHidden ? 'block' : 'none';
+            arrow.textContent = isHidden ? '▲' : '▼';
         }
 
         // ── KEYBOARD SHORTCUTS ────────────────────────────────────────
@@ -4217,6 +4270,8 @@
         loadBfPersistent();
         // Init daily fat loss goal card
         updateFatGoalCard();
+        // Build date-grouped history
+        renderHistory();
 
         // ── MORE DRAWER ───────────────────────────────────────────────
         function openMoreDrawer() {
